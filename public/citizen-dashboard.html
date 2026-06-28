@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Dashboard - GramaVoice</title>
+    <link rel="stylesheet" href="css/citizen.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1 data-translate="app-title">🗣️ GramaVoice</h1>
+            <nav class="header-nav">
+                <button class="nav-btn active" data-view="all" data-translate="all-issues">All Issues</button>
+                <button class="nav-btn" data-view="my-reports" data-translate="my-reports">My Reports</button>
+                <span id="user-name"></span>
+                <div class="lang-toggle-group">
+                    <button class="lang-toggle active" onclick="switchLanguage('en')">English</button>
+                    <button class="lang-toggle" onclick="switchLanguage('te')">తెలుగు</button>
+                </div>
+                <button class="nav-btn" onclick="logout()" data-translate="logout">Logout</button>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filters">
+            <select id="filter-location" onchange="loadIssues()">
+                <option value="" data-translate="all-locations">All Locations</option>
+            </select>
+            <select id="filter-sort" onchange="loadIssues()">
+                <option value="recent" data-translate="sort-newest">Sort by: Newest</option>
+                <option value="likes" data-translate="sort-likes">Sort by: Most Liked</option>
+            </select>
+            <input type="text" id="search-issues" data-translate-placeholder="search" onkeyup="searchIssues()">
+        </div>
+
+        <div id="issues-container" class="issues-grid">
+            <!-- Issues will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="openReportModal()">+</button>
+
+    <!-- Report Issue Modal -->
+    <div id="report-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="report-issue">Report New Issue</h2>
+                <button class="close-btn" onclick="closeReportModal()">&times;</button>
+            </div>
+            <div id="alert-container"></div>
+            <form id="report-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label data-translate="title">Title *</label>
+                    <input type="text" id="report-title" required>
+                </div>
+                <div class="form-group">
+                    <label data-translate="description">Description *</label>
+                    <textarea id="report-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label data-translate="category">Category *</label>
+                    <select id="report-category" required>
+                        <option value="" data-translate="select-category">Select category</option>
+                        <option value="Road" data-translate="road">Road</option>
+                        <option value="Water" data-translate="water">Water</option>
+                        <option value="Electricity" data-translate="electricity">Electricity</option>
+                        <option value="Sanitation" data-translate="sanitation">Sanitation</option>
+                        <option value="Education" data-translate="education">Education</option>
+                        <option value="Healthcare" data-translate="healthcare">Healthcare</option>
+                        <option value="Other" data-translate="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-translate="village">Village/Area *</label>
+                    <input type="text" id="report-village" required>
+                </div>
+                <div class="form-group">
+                    <label data-translate="upload-media">Upload Photo/Video *</label>
+                    <div class="file-upload-container">
+                        <input type="file" id="report-media" accept="image/*,video/*" onchange="handleFileSelect(event)">
+                        <div class="file-upload-area" id="file-upload-area">
+                            <div class="upload-icon">📁</div>
+                            <p data-translate="drag-drop">Drag & drop files here or click to browse</p>
+                            <p class="file-info">Max size: 50MB | Images: JPG, PNG, GIF, WEBP | Videos: MP4, MOV, AVI</p>
+                        </div>
+                        <div id="file-preview" class="file-preview"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit" data-translate="submit-report">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/language.js"></script>
+    <script src="js/citizen-dashboard.js"></script>
+    <script>
+        // Initialize language on page load
+        initLanguage();
+    </script>
+</body>
+</html>
+

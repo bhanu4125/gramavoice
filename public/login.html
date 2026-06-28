@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GramaVoice - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="logo">
+                <h1 data-translate="app-title">🗣️ GramaVoice</h1>
+                <p data-translate="app-subtitle">Citizen Complaint Management System</p>
+            </div>
+            
+            <div class="lang-toggle-container">
+                <button class="lang-toggle-btn active" onclick="switchLanguage('en')">English</button>
+                <button class="lang-toggle-btn" onclick="switchLanguage('te')">తెలుగు</button>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="citizen">Citizen Login</button>
+                <button class="tab-btn" data-tab="government">Government Login</button>
+            </div>
+
+            <!-- Citizen Login Form -->
+            <div class="tab-content active" id="citizen-tab">
+                <form id="citizen-login-form">
+                    <h2>Citizen Access</h2>
+                    <div class="form-group">
+                        <input type="email" id="citizen-email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="citizen-password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="toggle-text">Don't have an account? <a href="#" id="show-citizen-register">Sign Up</a></p>
+                </form>
+
+                <form id="citizen-register-form" style="display: none;">
+                    <h2>Create Account</h2>
+                    <div class="form-group">
+                        <input type="text" id="citizen-name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="citizen-register-email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="citizen-register-password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="citizen-village" placeholder="Village/Area Name" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                    <p class="toggle-text">Already have an account? <a href="#" id="show-citizen-login">Login</a></p>
+                </form>
+            </div>
+
+            <!-- Government Login Form -->
+            <div class="tab-content" id="government-tab">
+                <form id="government-login-form">
+                    <h2>Government Official Access</h2>
+                    <div class="form-group">
+                        <input type="email" id="gov-email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="gov-password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="toggle-text">Need an account? <a href="#" id="show-gov-register">Register</a></p>
+                </form>
+
+                <form id="government-register-form" style="display: none;">
+                    <h2>Register Official</h2>
+                    <div class="form-group">
+                        <input type="text" id="gov-name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="gov-register-email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="gov-register-password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="gov-village" placeholder="Department/Area" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                    <p class="toggle-text">Already have an account? <a href="#" id="show-gov-login">Login</a></p>
+                </form>
+            </div>
+
+            <div id="alert-message" class="alert"></div>
+        </div>
+    </div>
+
+    <script src="js/language.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        initLanguage();
+    </script>
+</body>
+</html>
+
