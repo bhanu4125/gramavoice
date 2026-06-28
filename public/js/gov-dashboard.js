@@ -1,5 +1,5 @@
-const API_BASE = 'http://localhost:5000/api/gov';
-const socket = io('http://localhost:5000');
+const API_BASE = '/api/gov';
+const socket = io();
 let currentUser = null;
 let currentIssueId = null;
 
